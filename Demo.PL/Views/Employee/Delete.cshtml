@@ -1,0 +1,19 @@
+﻿@model EmployeeViewModel
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete Employee</h1>
+<br />
+<br />
+
+<form asp-action="Delete" class="table table-striped table-hover" >
+    <div asp-validation-summary="All"></div>
+     <partial name="PartialViews/DetailsDeleteEmployeePartial" />
+     <input type="hidden" asp-for="ImageName" /> @* ForBinding *@
+
+    <input class="btn btn-secondary" type="submit" value="Delete"/>
+    <a asp-action="Index" asp-controller="Employee" class="btn btn-">Back To List</a>
+</form>
+
+

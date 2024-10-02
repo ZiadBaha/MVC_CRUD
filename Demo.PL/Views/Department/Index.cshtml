@@ -1,0 +1,48 @@
+﻿@model IEnumerable<DepartmentViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>All Departments</h1>
+<br />
+<br />
+
+<a asp-action ="Create" asp-controller="Department" class="btn btn-primary">Create New Department</a>
+<br />
+
+@if(Model.Count() > 0)
+{
+    <table class="mt-4 table table-striped table-hover">
+    @*     Table Stripped To show table has one rows with deferent colors *@
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(D => D.Code)</th>
+                <th>@Html.DisplayNameFor(D => D.Name)</th>
+                <th>@Html.DisplayNameFor(D => D.DateOfCreation)</th>
+                <th>Details</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var @dept in Model)
+            {
+                <tr>
+                    <td>@dept.Code</td>
+                    <td>@dept.Name</td>
+                    <td>@dept.DateOfCreation</td>
+                    <partial name="_ButtonsPartial" model="@dept.Id.ToString()">
+
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="mt-4 alert alert-warning">
+        <h3>There is No Departments :(</h3>
+    </div>
+}
+

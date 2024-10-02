@@ -1,0 +1,91 @@
+﻿@model IEnumerable<EmployeeViewModel>
+<h1>All Employees</h1>
+<br />
+<br />
+
+<a asp-action ="Create" asp-controller="Employee" class="btn btn-primary">Create New Employee</a>
+<br />
+<br />
+<br />
+<div class="row justify-content-center align-items-center mg-5">
+    <form asp-action="Index" class=" row col-8 offset-2">
+        <div class="col-8">
+            <input type="text" class="form-control" name="SearchInp" id="SearchInp" placholder="Search By Name" />
+        </div>
+        <div class="col-4">
+        <input type="submit" class="btn btn-success" />
+        </div>
+    </form>
+
+</div>
+@if(Model.Count() > 0)
+{
+    <table class="mt-4 table table-striped table-hover">
+    @*     Table Stripped To show table has one rows with deferent colors *@
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(E => E.Name)</th>
+                <th>@Html.DisplayNameFor(E => E.Image)</th>
+                <th>@Html.DisplayNameFor(E => E.age)</th>
+                <th>@Html.DisplayNameFor(E => E.Address)</th>
+                <th>@Html.DisplayNameFor(E => E.Salary)</th>
+                <th>@Html.DisplayNameFor(E => E.Department)</th>
+                <th>@Html.DisplayNameFor(E => E.IsActive)</th>
+                <th>@Html.DisplayNameFor(E => E.Email)</th>
+                <th>@Html.DisplayNameFor(E => E.HireDate)</th>
+                <th>@Html.DisplayNameFor(E => E.PhoneNumber)</th>
+                <th>Details</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var @emp in Model)
+            {
+                <tr>
+                    <td>@emp.Name</td>
+                    <td>
+                     <img  src="~/files/Images/@emp.ImageName" width="40" class="img-fluid rounded-circle"/>
+                    </td>
+                    <td>@emp.age</td>
+                    <td>@emp.Address</td>
+                    <td>@Html.DisplayFor(M=>@emp.Salary) @* To Display it With dolar sign  *@</td>
+                    <td>@emp.Department?.Name</td>
+                    <td>@Html.DisplayFor(M=>@emp.IsActive) @* To make it clakable *@</td>
+                    <td>@Html.DisplayFor(M=>@emp.Email)</td>
+                    <td>@emp.HireDate</td>
+                    <td>@emp.PhoneNumber</td>
+                    <partial name="_ButtonsPartial" model="@emp.Id.ToString()">
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="mt-4 alert alert-warning">
+        <h3>There is No Employees :(</h3>
+    </div>
+}
+<script>
+    const searchBar = $('#SearchInp');
+    const table = $('table');
+
+    searchBar.on('keyup', function (event) {
+        var searchValue = searchBar.val();
+
+        $.ajax({
+            url: '/Employee/Search',
+            type: 'Get',
+            data: { SearchInp: searchValue },
+            success: function (result) {
+                table.html(result)
+            },
+            error: function (xhr, status, error) {
+                console.log(error)
+            }
+        })
+    })
+</script>
+
+

@@ -1,0 +1,33 @@
+﻿@model IEnumerable<UserViewModel>
+<table class="mt-5 table table-striped table-hover">
+    <thead>
+        <tr>
+            <td>@Html.DisplayNameFor(U=>U.Id)</td>
+            <td>@Html.DisplayNameFor(U=>U.Fname)</td>
+            <td>@Html.DisplayNameFor(U=>U.Lname)</td>
+            <td>@Html.DisplayNameFor(U=>U.PhoneNumber)</td>
+            <td>@Html.DisplayNameFor(U=>U.Email)</td>
+            <td>@Html.DisplayNameFor(U=>U.Roles)</td>
+            <td>Details</td>
+            <td>Update</td>
+            <td>Delete</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Id</td>
+                <td>@user.Fname</td>
+                <td>@user.Lname</td>
+                <td>@user.PhoneNumber</td>
+                <td>@user.Email</td>
+                <td>@string.Join("," ,user.Roles)</td>
+                <partial name="_ButtonsPartial" , model="@user.Id">
+            </tr>
+        }
+
+
+    </tbody>
+
+</table>

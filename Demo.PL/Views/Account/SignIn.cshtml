@@ -1,0 +1,39 @@
+﻿@model SignInViewModel
+@{
+    ViewData["Title"] = "Sign In";
+    Layout = "~/Views/Shared/_AuthLayout.cshtml";
+}
+
+
+<div class="main-agileinfo">
+			<div class="agileits-top">
+				<form asp-action="SignIn">
+					<div asp-validation-summary="All"></div>
+					
+					<input class="text email" asp-for="Email" placeholder="Email" required="">
+					<br />
+					<input class="text" asp-for="Password" placeholder="Password" required="">
+					<br />
+					
+
+					<div class="wthree-text">
+						<label class="anim">
+							<input  asp-for="RememberMe" class="checkbox" required="">
+							<span>Remember Me ?</span>
+						</label>
+						<div class="clear"> </div>
+					</div>
+					<input type="submit" value="SIGNIN">
+				</form>
+			    <p><a asp-action="GoogleLogin">Login With Google</a></p>
+				<p>Donot have an Account? <a asp-action="SignUp"> Register Now!</a></p>
+				<p><a asp-action="ForgetPassword"> Forget Password ?</a></p>
+			</div>
+		</div>
+@section ValidationScriptSection{
+	@* <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script> *@
+	@* <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script> *@
+				<partial name="_ValidationScriptsPartial" />
+	@* put them in view that has html form Like(create update ) *@
+}
+

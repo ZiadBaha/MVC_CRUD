@@ -1,0 +1,27 @@
+﻿@model EmployeeViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create Employee</h1>
+<br />
+<br />
+
+<form asp-action="Create" method="post" enctype="multipart/form-data" >
+    @* Form by default Post *@
+        <partial name="PartialViews/CreateEditEmployeePartial" />
+       @*  encrypt To Submit File Inputs *@
+
+    <input type="submit" class="btn btn-primary" value="Create" />
+    <a asp-action="Index" asp-controller="Employee" class="btn btn-">Back To List</a>
+</form>
+@* Using section when  we need to some of code doesnot be rendered  To RenderBody  *@
+@* Client Side Validation *@
+@section ValidationScriptSection{
+    @* <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script> *@
+    @* <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script> *@
+        <partial name="_ValidationScriptsPartial" />
+    @* put them in view that has html form Like(create update ) *@
+}
+@* this it will be rendered to RenderSectionAsync by passing to it section name in shared Layout *@

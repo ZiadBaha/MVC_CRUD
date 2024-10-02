@@ -1,0 +1,42 @@
+﻿@model IEnumerable<EmployeeViewModel>
+<table class="mt-4 table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(E => E.Name)</th>
+            <th>@Html.DisplayNameFor(E => E.Image)</th>
+            <th>@Html.DisplayNameFor(E => E.age)</th>
+            <th>@Html.DisplayNameFor(E => E.Address)</th>
+            <th>@Html.DisplayNameFor(E => E.Salary)</th>
+            <th>@Html.DisplayNameFor(E => E.Department)</th>
+            <th>@Html.DisplayNameFor(E => E.IsActive)</th>
+            <th>@Html.DisplayNameFor(E => E.Email)</th>
+            <th>@Html.DisplayNameFor(E => E.HireDate)</th>
+            <th>@Html.DisplayNameFor(E => E.PhoneNumber)</th>
+            <th>Details</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var @emp in Model)
+        {
+            <tr>
+                <td>@emp.Name</td>
+                <td>
+                    <img src="~/files/Images/@emp.ImageName" width="40" class="img-fluid rounded-circle" />
+                </td>
+                <td>@emp.age</td>
+                <td>@emp.Address</td>
+                <td>@Html.DisplayFor(M=>@emp.Salary) 
+                <td>@emp.Department?.Name</td>
+                <td>@Html.DisplayFor(M=>@emp.IsActive) </td>
+                <td>@Html.DisplayFor(M=>@emp.Email)</td>
+                <td>@emp.HireDate</td>
+                <td>@emp.PhoneNumber</td>
+                <partial name="_ButtonsPartial" model="@emp.Id.ToString()">
+
+
+            </tr>
+        }
+    </tbody>
+</table>

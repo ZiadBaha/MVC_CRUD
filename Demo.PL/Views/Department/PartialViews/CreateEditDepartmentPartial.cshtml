@@ -1,0 +1,24 @@
+﻿@model DepartmentViewModel
+ <div class="form-group">
+        <label class="col-form-label" asp-for="Code"></label>
+    @*  asp for ---> 1. for="Code"
+                     2.Value of label *@
+        <input asp-for="Code" class="form-control" />
+    @*  asp for ---> 1. name="Code"
+                          2. id="Code" 
+                          3.type based on type of property*@
+        <span class="text-danger" asp-validation-for="Code"></span>
+    @*  required for input that has validation , must be span *@
+    </div>
+
+    <div class="form-group">
+        <label class="col-form-label" asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span class="text-danger" asp-validation-for="Name"></span>
+    </div>
+
+    <div class="form-group">
+        <label class="col-form-label" asp-for="DateOfCreation"></label>
+        <input asp-for="DateOfCreation" class="form-control" />
+    </div>
+
